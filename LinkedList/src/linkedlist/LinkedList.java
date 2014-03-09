@@ -2,15 +2,15 @@ package linkedlist;
 
 public class LinkedList
 {
-	private ListNode			head;				// Preserves a reference to
-													// the first item in the
-													// list.
-	private ListNode			tail;				// Why not?
+	private ListNode	head;			// Preserves a reference to
+										// the first item in the
+										// list.
+	private ListNode	tail;			// Why not?
 
-	private ListNode			currentNode;		// Current ListNode.
-	private ListNode			temp;				// Temporary reference.
-	private int					numItems;			// How many items do we have
-													// in this list now?
+	private ListNode	currentNode;	// Current ListNode.
+	private ListNode	temp;			// Temporary reference.
+	private int			numItems;		// How many items do we have
+										// in this list now?
 
 	public LinkedList( )
 	{
@@ -70,11 +70,22 @@ public class LinkedList
 	 * Allows us to iterate forward through the list. Moves currentObject to the
 	 * next object in the list.
 	 */
-	public void NextElement( )
+	public void NextElement( ) throws NoNextElementException
 	{
-		if ( currentNode.GetNextItem( ) != null )
+		if ( head != null )
 		{
-			currentNode = currentNode.GetNextItem( );
+			if ( currentNode.GetNextItem( ) != null )
+			{
+				currentNode = currentNode.GetNextItem( );
+			}
+			else
+			{
+				throw new NoNextElementException( );
+			}
+		}
+		else
+		{
+			throw new NoNextElementException( );
 		}
 	}
 

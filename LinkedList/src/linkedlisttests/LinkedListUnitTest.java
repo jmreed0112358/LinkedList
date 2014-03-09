@@ -3,6 +3,7 @@ package linkedlisttests;
 import static org.junit.Assert.*;
 import junit.framework.Assert;
 import linkedlist.LinkedList;
+import linkedlist.NoNextElementException;
 
 import org.junit.Test;
 
@@ -58,22 +59,30 @@ public class LinkedListUnitTest
 	@Test
 	public void TestFirstElement( )
 	{
-		LinkedList theList = new LinkedList( );
-
-		int[] data = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-
-		LoadData( theList, data );
-
-		for( int i = 0 ; i < 5 ; ++i )
+		try
 		{
-			theList.NextElement( );
+			LinkedList theList = new LinkedList( );
+
+			int[] data = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+
+			LoadData( theList, data );
+
+			for( int i = 0 ; i < 5 ; ++i )
+			{
+				theList.NextElement( );
+
+			}
+
+			// Now we go to the first element.
+			theList.FirstElement( );
+
+			// This depends on GetCurrentObject actually working.
+			Assert.assertEquals( 0, theList.GetCurrentObject( ) );
 		}
-
-		// Now we go to the first element.
-		theList.FirstElement( );
-
-		// This depends on GetCurrentObject actually working.
-		Assert.assertEquals( 0, theList.GetCurrentObject( ) );
+		catch( NoNextElementException e )
+		{
+			fail( "Caught NoNextElementException" );
+		}
 	}
 
 	/**
@@ -82,15 +91,73 @@ public class LinkedListUnitTest
 	@Test
 	public void TestNextElement( )
 	{
-		LinkedList theList = new LinkedList( );
+		try
+		{
+			LinkedList theList = new LinkedList( );
 
-		int[] data = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+			int[] data = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
-		LoadData( theList, data );
+			LoadData( theList, data );
 
-		theList.NextElement( );
+			theList.NextElement( );
 
-		Assert.assertEquals( 1, theList.GetCurrentObject( ) );
+			Assert.assertEquals( 1, theList.GetCurrentObject( ) );
+		}
+		catch( NoNextElementException e )
+		{
+			fail( "Caught NoNextElementException" );
+		}
+	}
+
+	@Test
+	public void TestNextElementEmptyList( )
+	{
+		try
+		{
+			LinkedList theList = new LinkedList( );
+
+			// Should throw an exception.
+			theList.NextElement( );
+
+			fail( "Didn't catch the exception." );
+		}
+		catch( NoNextElementException e )
+		{
+			// Bullshit way to pass the test when the exception is handled.
+			boolean result = true;
+			Assert.assertEquals( true, result );
+		}
+	}
+
+	@Test
+	public void TestNextElementAtEndOfList( )
+	{
+		try
+		{
+			LinkedList theList = new LinkedList( );
+
+			int[] data = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+
+			LoadData( theList, data );
+
+			for( int i = 0 ; i < data.length ; ++i )
+			{
+				theList.NextElement( );
+			}
+
+			Assert.assertEquals( 9, theList.GetCurrentObject( ) );
+
+			// Should throw an exception.
+			theList.NextElement( );
+
+			fail( "Didn't throw an exception." );
+		}
+		catch( NoNextElementException e )
+		{
+			// Bullshit way to pass the test when the exception is handled.
+			boolean result = true;
+			Assert.assertEquals( true, result );
+		}
 	}
 
 	@Test
@@ -108,18 +175,25 @@ public class LinkedListUnitTest
 	@Test
 	public void TestHasMoreElementsNormal( )
 	{
-		LinkedList theList = new LinkedList( );
-
-		int[] data = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-
-		LoadData( theList, data );
-
-		for( int i = 0 ; i < 5 ; ++i )
+		try
 		{
-			theList.NextElement( );
-		}
+			LinkedList theList = new LinkedList( );
 
-		Assert.assertEquals( true, theList.HasMoreElements( ) );
+			int[] data = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+
+			LoadData( theList, data );
+
+			for( int i = 0 ; i < 5 ; ++i )
+			{
+				theList.NextElement( );
+			}
+
+			Assert.assertEquals( true, theList.HasMoreElements( ) );
+		}
+		catch( NoNextElementException e )
+		{
+			fail( "Caught NoNextElementException" );
+		}
 	}
 
 	/**
