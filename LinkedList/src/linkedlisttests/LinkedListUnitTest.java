@@ -1,4 +1,4 @@
-package linkedlist;
+package linkedlisttests;
 
 import static org.junit.Assert.*;
 import junit.framework.Assert;
@@ -25,7 +25,7 @@ public class LinkedListUnitTest
 	 * Tests the listarray's AddToEnd method. We'll give the listarray an
 	 * integer to be added to the list. Then we check to see if the item has
 	 * been added, as well as checking the numItems parameter. This specific
-	 * test doesn't fill the list to capcity.
+	 * test doesn't fill the list to capacity.
 	 */
 	@Test
 	public void TestBasicAddToEnd( )
@@ -38,7 +38,7 @@ public class LinkedListUnitTest
 		Assert.assertEquals( 1, theList.GetNumItems( ) );
 		Assert.assertEquals( 73, theList.GetCurrentObject( ) );
 	}
-	
+
 	/**
 	 * Tests GetCurrentObject. Some of these unit tests require this function.
 	 */

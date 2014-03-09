@@ -2,7 +2,6 @@ package linkedlist;
 
 public class LinkedList
 {
-	private static final int	INIT_LEN	= 10;
 	private ListNode			head;				// Preserves a reference to
 													// the first item in the
 													// list.
@@ -31,7 +30,7 @@ public class LinkedList
 	 *            The object to be added to the list.
 	 */
 	public void AddToEnd( Object ob )
-	{	
+	{
 		if ( head == null )
 		{
 			head = new ListNode( ob );
@@ -39,14 +38,14 @@ public class LinkedList
 			tail = currentNode;
 			if ( tail == null )
 			{
-				System.out.println( "tail == null!!!" );// Ok, not null here.
-			}			
+				System.out.println( "tail == null!!!" );
+			}
 		}
 		else
-		{	
-			temp = new ListNode( ob );	
-			tail.SetNextItem( temp );	
-			tail = tail.GetNextItem( );  // So, it is this line that's screwing up.
+		{
+			temp = new ListNode( ob );
+			tail.SetNextItem( temp );
+			tail = tail.GetNextItem( );
 		}
 		++numItems;
 	}
@@ -59,7 +58,6 @@ public class LinkedList
 		currentNode = head;
 	}
 
-	
 	/**
 	 * Gets the tail reference.
 	 */
@@ -67,7 +65,7 @@ public class LinkedList
 	{
 		return tail;
 	}
-	
+
 	/**
 	 * Allows us to iterate forward through the list. Moves currentObject to the
 	 * next object in the list.
@@ -178,7 +176,8 @@ class ListNode
 		}
 		else
 		{
-			System.out.println( "ListNode::SetNextItem - Got a null reference!" );
+			System.out
+					.println( "ListNode::SetNextItem - Got a null reference!" );
 		}
 	}
 
