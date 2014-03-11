@@ -1,4 +1,4 @@
-package linkedlist;
+package exceptions;
 
 public class NoNextElementException extends Exception
 {

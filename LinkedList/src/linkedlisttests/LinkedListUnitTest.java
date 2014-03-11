@@ -3,9 +3,10 @@ package linkedlisttests;
 import static org.junit.Assert.*;
 import junit.framework.Assert;
 import linkedlist.LinkedList;
-import linkedlist.NoNextElementException;
 
 import org.junit.Test;
+
+import exceptions.NoNextElementException;
 
 public class LinkedListUnitTest
 {

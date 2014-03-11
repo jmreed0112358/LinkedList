@@ -1,5 +1,7 @@
 package linkedlist;
 
+import exceptions.NoNextElementException;
+
 public class LinkedList
 {
 	private ListNode	head;			// Preserves a reference to
